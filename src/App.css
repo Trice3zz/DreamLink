@@ -1,0 +1,132 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 1s, color 1s;
+}
+
+.app-container {
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-size: cover;
+  background-position: center;
+  transition: background 1s ease-in-out;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  animation: shimmer 3s infinite alternate;
+}
+
+@keyframes shimmer {
+  0% { color: #e0e0ff; text-shadow: 0 0 5px #fff, 0 0 10px #aaaaff; }
+  100% { color: #ffffff; text-shadow: 0 0 10px #fff, 0 0 20px #ccccff; }
+}
+
+/* Day Theme */
+.day {
+  background: linear-gradient(to top right, #012435, #eb45e2);
+  color: #333;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* star texture */
+}
+
+/* Night Theme */
+.night {
+  background: linear-gradient(to bottom, #0a0a2a, #1a1a3d);
+  color: #e0e0ff;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* star texture */
+}
+body {
+  margin: 0;
+  background-color: black; /* 🌑 Solid space backdrop */
+  color: white;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.app-container {
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #f3f3ff;
+  text-shadow: 0 0 15px #bbf;
+}
+
+/* ☁️ Cloudy buttons */
+.cloud-button {
+  background: linear-gradient(to top left, #fff, #e0e7ff);
+  color: #333;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.cloud-button:hover {
+  background: linear-gradient(to top right, #f0f8ff, #e6eaff);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: glowing dream container */
+.component {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 700px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+textarea {
+  background: rgba(151, 147, 147, 0.08);
+  border: none;
+  color: rgb(231, 229, 229);
+  padding: 1rem;
+  border-radius: 12px;
+  width: 100%;
+  resize: vertical;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 10px rgba(255,255,255,0.08);
+  font-size: 1rem;
+}
+.thought-bubble {
+  position: fixed;
+  bottom: -50px;
+  font-size: 1rem;
+  color: white;
+  background: rgba(255,255,255,0.15);
+  padding: 0.7rem 1.2rem;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+  animation: float-up 8s linear forwards;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "dreamlink"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "dreamlink-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

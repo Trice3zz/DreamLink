@@ -1,0 +1,39 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 1s, color 1s;
+}
+
+.app-container {
+  text-align: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-size: cover;
+  background-position: center;
+  transition: background 1s ease-in-out;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  animation: shimmer 3s infinite alternate;
+}
+
+@keyframes shimmer {
+  0% { color: #e0e0ff; text-shadow: 0 0 5px #fff, 0 0 10px #aaaaff; }
+  100% { color: #ffffff; text-shadow: 0 0 10px #fff, 0 0 20px #ccccff; }
+}
+
+/* Day Theme */
+.day {
+  background: linear-gradient(to top right, #aee1f9, #ffffff);
+  color: #333;
+}
+
+/* Night Theme */
+.night {
+  background: linear-gradient(to bottom, #0a0a2a, #1a1a3d);
+  color: #e0e0ff;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* star texture */
+}
