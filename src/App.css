@@ -40,7 +40,7 @@ body, html {
 }
 body {
   margin: 0;
-  background-color: black; /* 🌑 Solid space backdrop */
+  background-color: rgb(3, 2, 2); /* 🌑 Solid space backdrop */
   color: white;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   overflow-x: hidden;
@@ -64,7 +64,7 @@ body {
 /* ☁️ Cloudy buttons */
 .cloud-button {
   background: linear-gradient(to top left, #fff, #e0e7ff);
-  color: #333;
+  color: #2c2323;
   padding: 0.7rem 1.4rem;
   font-size: 1rem;
   border: none;
@@ -142,4 +142,34 @@ textarea {
   box-shadow: 0 0 10px rgba(255,255,255,0.08);
   font-size: 1rem;
   margin-bottom: 1rem;
+}
+/* Base white glowing text */
+.component, .component * {
+  color: white;
+}
+
+/* Shimmer effect for titles or special lines */
+.shimmer {
+  color: white;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ccc,
+    0 0 20px #bbf,
+    0 0 30px #88f;
+  animation: shimmerPulse 3s infinite alternate;
+}
+
+@keyframes shimmerPulse {
+  0% {
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #ccc,
+      0 0 15px #aaf;
+  }
+  100% {
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #ddf,
+      0 0 30px #bbf;
+  }
 }
