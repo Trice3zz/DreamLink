@@ -22,23 +22,37 @@ function DreamDecoder() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+          Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: 'gpt-3.5-turbo',
           messages: [
-            { role: 'system', content: 'You are a poetic dream oracle. Speak with mystery, warmth, and surreal insight. Interpret dreams like ancient scrolls of the soul.' },
-            { role: 'user', content: `Title: ${title}\nDream: ${input}\nWhat does this dream reveal beneath the surface?` },
+            {
+              role: 'system',
+              content: 'You are a poetic dream oracle. Interpret dreams with surreal, symbolic wisdom in a mysterious and comforting tone.',
+            },
+            {
+              role: 'user',
+              content: `Title: ${title}\nDream: ${input}\nWhat does this dream reveal beneath the surface?`,
+            },
           ],
           temperature: 0.85,
         }),
       });
 
       const data = await response.json();
-      setInterpretation(data.choices[0].message.content.trim());
-    } catch (error) {
-      setInterpretation('🌀 The winds of insight are momentarily still... try again.');
+      console.log(data); // for debugging
+
+      if (data.choices && data.choices.length > 0) {
+        setInterpretation(data.choices[0].message.content.trim());
+      } else {
+        setInterpretation('🌀 The oracle is silent. Try again soon.');
+      }
+    } catch (err) {
+      console.error('Dream Oracle error:', err);
+      setInterpretation('🌑 Something went wrong while interpreting your dream. Try again soon.');
     }
+
     setLoading(false);
   };
 
@@ -72,10 +86,11 @@ function DreamDecoder() {
       </button>
 
       {loading && <p style={{ color: 'white' }}>🌙 Consulting the celestial archives...</p>}
+
       {interpretation && (
         <div style={{ marginTop: '1rem' }}>
           <h3 className="shimmer">📜 Oracle's Whisper:</h3>
-          <p style={{ fontStyle: 'italic' }}>{interpretation}</p>
+          <p style={{ fontStyle: 'italic', whiteSpace: 'pre-wrap' }}>{interpretation}</p>
         </div>
       )}
 
@@ -88,6 +103,6 @@ function DreamDecoder() {
     </div>
   );
 }
+console.log("API KEY LOADED:", import.meta.env.VITE_OPENAI_API_KEY);
 
 export default DreamDecoder;
-

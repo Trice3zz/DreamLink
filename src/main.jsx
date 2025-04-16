@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './App.css'; // if you're using global styles
+import { UserProvider } from './UserContext'; // ⬅️ Import this
+import './App.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <UserProvider> {/* ⬅️ Wrap your entire app */}
+      <App />
+    </UserProvider>
   </React.StrictMode>
 );

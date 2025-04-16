@@ -1,5 +1,5 @@
 import React from 'react';
-import './CloudPopup.css';
+import './App.css';
 
 function CloudPopup({ message, onClose }) {
   return (

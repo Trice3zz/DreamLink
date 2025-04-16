@@ -179,7 +179,7 @@ textarea {
   right: 1rem;
   width: 90px;
   height: auto;
-  z-index: 5;
+  z-index: 999; /* 👈 make sure this is higher than navbar (was 10) */
   filter: drop-shadow(0 0 15px white) brightness(1.2);
   animation: softFloat 4s ease-in-out infinite alternate;
 }
@@ -216,4 +216,69 @@ textarea {
 @keyframes fadeIn {
   from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
+}
+.navbar {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  z-index: 20;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.dreamy-tab {
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 0.6rem 1.4rem;
+  background: linear-gradient(to top left, #ffffff22, #ffffff10);
+  border-radius: 50px;
+  color: white;
+  text-shadow: 0 0 4px #fff;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dreamy-tab:hover {
+  background: linear-gradient(to bottom right, #ffffff55, #ddddff22);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+}
+/* ✨ Dreamlike glowing headers */
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+  text-shadow:
+    0 0 5px #ffffffcc,
+    0 0 10px #aabbee,
+    0 0 15px #8899ff;
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+/* Optional soft shimmer pulse */
+@keyframes glowPulse {
+  0% {
+    text-shadow:
+      0 0 5px #ffffffcc,
+      0 0 10px #aabbee,
+      0 0 15px #8899ff;
+  }
+  100% {
+    text-shadow:
+      0 0 10px #ffffffdd,
+      0 0 20px #ccddff,
+      0 0 30px #99aaff;
+  }
 }

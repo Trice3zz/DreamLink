@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DreamJournal from './DreamJournal.jsx';
 import DreamDecoder from './DreamDecoder.jsx';
 import DreamSync from './DreamSync.jsx';
 import CreativeMode from './CreativeMode.jsx';
 import LucidTrainer from './LucidTrainer.jsx';
 import DreamFeed from './DreamFeed.jsx';
+import LucidDashboard from './LucidDashboard.jsx';
+import Navbar from './Navbar.jsx';
 import './App.css';
 
 function App() {
@@ -80,10 +83,7 @@ function App() {
         ctx.globalAlpha = 1;
         shootingStar.x += 20;
         shootingStar.y += 10;
-        if (
-          shootingStar.x > canvas.width ||
-          shootingStar.y > canvas.height
-        ) {
+        if (shootingStar.x > canvas.width || shootingStar.y > canvas.height) {
           shootingStar = null;
         }
       }
@@ -115,24 +115,12 @@ function App() {
 
     const shootingInterval = setInterval(triggerShootingStar, 15000);
 
-    // 🌙 Moon Phase
-    const moon = document.createElement('img');
-    moon.src = "dreamlink logo.png";
-    moon.style.position = 'fixed';
-    moon.style.top = '2rem';
-    moon.style.right = '2rem';
-    moon.style.width = '60px';
-    moon.style.opacity = '0.0';
-    moon.style.zIndex = '0';
-    document.body.appendChild(moon);
-
-    // 💭 Floating Thoughts
+    // Floating thoughts
     const thoughts = [
       "I was flying through clouds...",
       "Everything shimmered like silver rain.",
       "There was a voice, but no one there.",
       "I opened a door to nowhere.",
-      "I knew I’d been there before.",
       "It was more than a dream..."
     ];
 
@@ -150,8 +138,7 @@ function App() {
 
     const bubbleInterval = setInterval(spawnThought, 10000);
 
-    // 🎶 Ambient Music
-    const audio = new Audio('https://cdn.pixabay.com/audio/2021/08/08/audio_2fa567ab5e.mp3');
+    const audio = new Audio('https://www.youtube.com/watch?v=LFASWuckB1c');
     audio.loop = true;
 
     function startMusic() {
@@ -163,7 +150,6 @@ function App() {
 
     return () => {
       document.body.removeChild(canvas);
-      document.body.removeChild(moon);
       clearInterval(shootingInterval);
       clearInterval(bubbleInterval);
       window.removeEventListener('click', startMusic);
@@ -171,15 +157,9 @@ function App() {
     };
   }, []);
 
-  return (
-    <div className={`app-container ${theme}`}>
-      {/* Glowing Logo in Top Right */}
-      <img
-        src="/dreamlink logo.png"
-        alt="Dream Link Logo"
-        className="dream-logo"
-      />
-
+  // Home page content
+  const Home = () => (
+    <>
       <h1 className="title">☁️ Dream Link</h1>
       <p style={{ textAlign: 'center', fontStyle: 'italic', opacity: 0.8 }}>
         Where your midnight visions float and find each other ✨
@@ -189,8 +169,25 @@ function App() {
       <DreamSync />
       <CreativeMode />
       <LucidTrainer />
-      <DreamFeed />
-    </div>
+    </>
+  );
+
+  return (
+    <Router>
+      <Navbar />
+      <img
+    src="/dreamlink logo.png"
+    alt="Dream Link Logo"
+    className="dream-logo"
+  />
+      <div className={`app-container ${theme}`}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/feed" element={<DreamFeed />} />
+          <Route path="/lucid" element={<LucidDashboard />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
