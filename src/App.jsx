@@ -117,12 +117,12 @@ function App() {
 
     // 🌙 Moon Phase
     const moon = document.createElement('img');
-    moon.src = `https://www.astrologyapi.com/assets/moon_phases/moon_${new Date().getDate() % 30}.png`;
+    moon.src = "dreamlink logo.png";
     moon.style.position = 'fixed';
     moon.style.top = '2rem';
     moon.style.right = '2rem';
     moon.style.width = '60px';
-    moon.style.opacity = '0.6';
+    moon.style.opacity = '0.0';
     moon.style.zIndex = '0';
     document.body.appendChild(moon);
 
@@ -173,6 +173,13 @@ function App() {
 
   return (
     <div className={`app-container ${theme}`}>
+      {/* Glowing Logo in Top Right */}
+      <img
+        src="/dreamlink logo.png"
+        alt="Dream Link Logo"
+        className="dream-logo"
+      />
+
       <h1 className="title">☁️ Dream Link</h1>
       <p style={{ textAlign: 'center', fontStyle: 'italic', opacity: 0.8 }}>
         Where your midnight visions float and find each other ✨

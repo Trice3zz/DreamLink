@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import CloudPopup from './CloudPopup';
+import { useUser } from './UserContext';
 
 function DreamDecoder() {
   const [title, setTitle] = useState('');
   const [input, setInput] = useState('');
   const [interpretation, setInterpretation] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const { user } = useUser();
 
   const interpretDream = async () => {
+    if (!user) {
+      setShowPopup(true);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -35,10 +44,9 @@ function DreamDecoder() {
 
   return (
     <div className="component">
-      <h2>🔮 The Dream Oracle</h2>
-      <p style={{ fontStyle: 'italic', color: 'white', opacity: 0.7 }}>
-        <span style={{ fontSize: '1.1rem' }}>“What does this dream mean?”</span><br />
-        Whisper your vision... and name it like a tale passed in twilight.
+      <h2 className="shimmer">🔮 The Dream Oracle</h2>
+      <p className="shimmer" style={{ fontStyle: 'italic', opacity: 0.8 }}>
+        “What does this dream mean?”<br />Whisper your vision... and name it like a tale passed in twilight.
       </p>
 
       <input
@@ -66,12 +74,20 @@ function DreamDecoder() {
       {loading && <p style={{ color: 'white' }}>🌙 Consulting the celestial archives...</p>}
       {interpretation && (
         <div style={{ marginTop: '1rem' }}>
-          <h3 style={{ color: '#ccc' }}>📜 Oracle's Whisper:</h3>
+          <h3 className="shimmer">📜 Oracle's Whisper:</h3>
           <p style={{ fontStyle: 'italic' }}>{interpretation}</p>
         </div>
+      )}
+
+      {showPopup && (
+        <CloudPopup
+          message="☁️ Please log in or create an account to receive your dream’s interpretation."
+          onClose={() => setShowPopup(false)}
+        />
       )}
     </div>
   );
 }
 
 export default DreamDecoder;
+
