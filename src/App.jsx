@@ -113,7 +113,7 @@ function App() {
       mouse.y = e.clientY;
     });
 
-    const shootingInterval = setInterval(triggerShootingStar, 15000);
+    const shootingInterval = setInterval(triggerShootingStar, 12000);
 
     // Floating thoughts
     const thoughts = [
